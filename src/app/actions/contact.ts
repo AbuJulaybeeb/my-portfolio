@@ -59,7 +59,7 @@ export async function submitContactForm(
     console.error("Error processing contact form:", err);
     return {
       success: false,
-      message: "An unexpected error occurred. Please reach out directly via email.",
+      message: "An unexpected error occurred. Please reach out directly to abujulaybeeb08@gmail.com.",
     };
   }
 }

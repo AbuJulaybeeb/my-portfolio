@@ -102,13 +102,13 @@ export default function InteractiveTerminal() {
       case "projects":
         output = (
           <div className="space-y-1.5 text-xs text-slate-300">
-            <p className="text-cyan-400 font-semibold">Flagship Works:</p>
-            <p>1. <strong className="text-white">StormSale</strong> — Web3 Affiliate Platform with on-chain payouts</p>
-            <p>2. <strong className="text-white">Xpend</strong> — WhatsApp Conversational Banking engine</p>
-            <p>3. <strong className="text-white">Fixeroni</strong> — Marketplace API with escrow & geolocation</p>
-            <p>4. <strong className="text-white">Supply Chain DApp</strong> — BlockDAG Hackathon provenance system</p>
-            <p>5. <strong className="text-white">Avalanche Card</strong> — Ecosystem DeFi & Staking interface</p>
-            <p>6. <strong className="text-white">$LEO Token</strong> — Stacks Ecosystem contest Clarity contracts</p>
+            <p className="text-cyan-400 font-semibold">Live Production Deployments:</p>
+            <p>1. <strong className="text-white">StormSale</strong> — Web3 Affiliate Platform (stormsale-one.vercel.app)</p>
+            <p>2. <strong className="text-white">Fixeroni</strong> — Marketplace API & Portal (fixeroni-page.netlify.app)</p>
+            <p>3. <strong className="text-white">Accensa App</strong> — Stellar x402 Back-Office (accensa-dashboard.vercel.app)</p>
+            <p>4. <strong className="text-white">Stellar-IndigoPay</strong> — Soroban Climate Donations (stellar-indigo-pay.vercel.app)</p>
+            <p>5. <strong className="text-white">SafeSwap</strong> — P2P Escrow Exchange (safe-swap-landing.vercel.app)</p>
+            <p>6. <strong className="text-white">AudioBlocks</strong> — Music Streaming Web3 (audio-blocks-frontend-v1.vercel.app)</p>
           </div>
         );
         break;
@@ -116,6 +116,7 @@ export default function InteractiveTerminal() {
       case "chains":
         output = (
           <div className="space-y-1 text-xs text-slate-300">
+            <p className="text-purple-400 font-semibold">• Stellar (Soroban) — Rust Smart Contracts & x402 Payments</p>
             <p className="text-red-400 font-semibold">• Avalanche (AVAX) — C-Chain & Custom Subnets</p>
             <p className="text-cyan-400 font-semibold">• BlockDAG — High-throughput DAG consensus</p>
             <p className="text-orange-400 font-semibold">• Stacks (STX) — Bitcoin Layer-2 with Clarity</p>
@@ -128,7 +129,7 @@ export default function InteractiveTerminal() {
         output = (
           <div className="space-y-1 text-xs text-slate-300">
             <p>GitHub: <a href="https://github.com/AbuJulaybeeb" target="_blank" className="text-cyan-400 underline">github.com/AbuJulaybeeb</a></p>
-            <p>Email: <a href="mailto:contact@jibrilraji.dev" className="text-cyan-400 underline">contact@jibrilraji.dev</a></p>
+            <p>Email: <a href="mailto:abujulaybeeb08@gmail.com" className="text-cyan-400 underline">abujulaybeeb08@gmail.com</a></p>
             <p>Twitter: <a href="https://twitter.com" target="_blank" className="text-cyan-400 underline">@j_r_qasim</a></p>
             <p className="text-emerald-400 mt-1">Status: Open for Full-Time & Contract Web3/Backend Roles</p>
           </div>
@@ -138,7 +139,7 @@ export default function InteractiveTerminal() {
       case "whoami":
         output = (
           <p className="text-xs text-cyan-300">
-            Jibril Raji Qasim | Senior Backend & Web3 Architect
+            Jibril Raji Qasim | Full-Stack & Web3 Engineer @ Fixeroni & StormSale (abujulaybeeb08@gmail.com)
           </p>
         );
         break;

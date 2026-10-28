@@ -48,7 +48,7 @@ export default function Contact() {
   };
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("contact@jibrilraji.dev");
+    navigator.clipboard.writeText("abujulaybeeb08@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -95,7 +95,7 @@ export default function Contact() {
               <div className="text-xs font-mono text-slate-400 uppercase">Primary Email</div>
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-sm sm:text-base text-cyan-300 font-medium truncate">
-                  contact@jibrilraji.dev
+                  abujulaybeeb08@gmail.com
                 </span>
                 <button
                   onClick={copyEmail}

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Organizations from "@/components/Organizations";
 import Projects from "@/components/Projects";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
@@ -18,6 +19,7 @@ export default function Home() {
         <StatsBar />
         <About />
         <Services />
+        <Organizations />
         <Projects />
         <InteractiveTerminal />
         <ExperienceTimeline />

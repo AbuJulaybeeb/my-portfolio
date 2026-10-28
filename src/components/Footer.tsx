@@ -76,23 +76,28 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#organizations" className="hover:text-cyan-400 transition-colors">
+                  {"// 03. Organizations & Teams"}
+                </a>
+              </li>
+              <li>
                 <a href="#projects" className="hover:text-cyan-400 transition-colors">
-                  {"// 03. Selected Works"}
+                  {"// 04. Selected Works"}
                 </a>
               </li>
               <li>
                 <a href="#terminal" className="hover:text-cyan-400 transition-colors">
-                  {"// 04. Developer Console"}
+                  {"// 05. Developer Console"}
                 </a>
               </li>
               <li>
                 <a href="#experience" className="hover:text-cyan-400 transition-colors">
-                  {"// 05. Trajectory & Milestones"}
+                  {"// 06. Trajectory & Milestones"}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-cyan-400 transition-colors">
-                  {"// 06. Get in Touch"}
+                  {"// 07. Get in Touch"}
                 </a>
               </li>
             </ul>

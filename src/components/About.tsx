@@ -152,20 +152,18 @@ export default function About() {
 
             <div className="text-slate-300 text-sm leading-relaxed space-y-4">
               <p>
-                Hi, I’m Jibril. I am a backend and Web3 engineer with over{" "}
-                <strong className="text-white">2+ years of hands-on experience</strong> building 
-                resilient backend architectures and smart contracts.
+                Hi, I’m Jibril. I am a full-stack developer with a passion for clean code, 
+                user-centric design, and deterministic decentralized systems.
               </p>
               <p>
-                Currently a student passionate about computer systems and cryptography, I focus 
-                relentlessly on building robust, scalable APIs with{" "}
-                <span className="text-cyan-400 font-medium">Node.js, Express, and PostgreSQL</span>.
+                Currently building high-throughput backend services at{" "}
+                <strong className="text-cyan-300">Fixeroni</strong>, engineering Web3 affiliate protocols at{" "}
+                <strong className="text-cyan-300">StormSale</strong>, and developing smart contracts across{" "}
+                <span className="text-violet-400 font-medium">Stellar (Soroban), Avalanche, and BlockDAG</span>.
               </p>
               <p>
-                In the decentralized ecosystem, I design smart contracts and DApps across{" "}
-                <span className="text-violet-400 font-medium">Avalanche, BlockDAG, and Stacks</span>. 
-                Whether building the StormSale decentralized affiliate platform or high-speed fintech APIs 
-                for Xpend and Fixeroni, I believe in writing deterministic, secure, and maintainable code.
+                With over <strong className="text-white">230+ repositories on GitHub</strong> and active membership 
+                in 7 developer organizations, I thrive on writing production-ready code from database layers to on-chain logic.
               </p>
             </div>
 
@@ -174,17 +172,17 @@ export default function About() {
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                 <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono">
                   <GraduationCap className="w-4 h-4" />
-                  <span>Student & Builder</span>
+                  <span>230+ Repos</span>
                 </div>
-                <div className="text-[11px] text-slate-400">Continuous learner in CS & Web3</div>
+                <div className="text-[11px] text-slate-400">Open source & production projects</div>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                 <div className="flex items-center gap-2 text-violet-400 text-xs font-mono">
                   <Award className="w-4 h-4" />
-                  <span>Hackathons</span>
+                  <span>7 Active Orgs</span>
                 </div>
-                <div className="text-[11px] text-slate-400">BlockDAG & Stacks Contender</div>
+                <div className="text-[11px] text-slate-400">Fixeroni, StormSale, Zyra, Stellar</div>
               </div>
             </div>
 

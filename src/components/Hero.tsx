@@ -50,10 +50,13 @@ export default function Hero() {
 
             {/* Subtitle / Bio summary */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              Specialized in engineering robust, high-throughput backend services using{" "}
-              <span className="text-cyan-300 font-medium">Node.js, Express, and PostgreSQL</span>, 
-              and crafting next-gen decentralized applications and smart contracts across{" "}
-              <span className="text-violet-300 font-medium">Avalanche, BlockDAG, and Stacks</span>.
+              Full-stack developer with a passion for clean code and user-centric design.
+              Currently engineering scalable backend architectures at{" "}
+              <a href="https://github.com/Fixeroni" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline font-semibold">Fixeroni</a>, 
+              Web3 affiliate protocols at{" "}
+              <a href="https://github.com/StormSale" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline font-semibold">StormSale</a>, 
+              and crafting smart contracts across{" "}
+              <span className="text-violet-300 font-medium">Stellar (Soroban), EVM, and BlockDAG</span>.
             </p>
 
             {/* Action Buttons */}
@@ -118,7 +121,7 @@ export default function Hero() {
                   <TwitterXIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="mailto:contact@jibrilraji.dev"
+                  href="mailto:abujulaybeeb08@gmail.com"
                   className="p-2.5 rounded-lg bg-white/5 border border-white/5 hover:border-cyan-500/40 hover:text-cyan-400 transition-all hover:scale-110"
                   aria-label="Email"
                 >
@@ -185,12 +188,12 @@ export default function Hero() {
                       </span>
                     </div>
                     <p className="text-xs text-slate-300 font-mono">
-                      Node.js • PostgreSQL • Solidity • BlockDAG
+                      Fixeroni • StormSale • Stellar • Node.js
                     </p>
                   </div>
                 </div>
 
-                {/* Floating Micro-Badge 1: Experience */}
+                {/* Floating Micro-Badge 1: GitHub Stats */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -200,12 +203,12 @@ export default function Hero() {
                     <Layers className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-slate-400 uppercase">Experience</div>
-                    <div className="text-xs font-mono font-bold text-white">2+ Years Active</div>
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">GitHub Activity</div>
+                    <div className="text-xs font-mono font-bold text-white">230+ Repositories</div>
                   </div>
                 </motion.div>
 
-                {/* Floating Micro-Badge 2: Web3 Deployments */}
+                {/* Floating Micro-Badge 2: Organizations */}
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -215,8 +218,8 @@ export default function Hero() {
                     <Sparkles className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-slate-400 uppercase">Ecosystems</div>
-                    <div className="text-xs font-mono font-bold text-white">AVAX & BlockDAG</div>
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">Affiliations</div>
+                    <div className="text-xs font-mono font-bold text-white">7 Organizations</div>
                   </div>
                 </motion.div>
 

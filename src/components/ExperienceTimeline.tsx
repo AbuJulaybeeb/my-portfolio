@@ -7,57 +7,57 @@ export default function ExperienceTimeline() {
   const experiences = [
     {
       period: "2024 — Present",
-      role: "Web3 & Smart Contract Developer",
-      organization: "BlockDAG & Avalanche Ecosystems",
-      badge: "Hackathon & DApps",
+      role: "Backend Lead & Systems Architect",
+      organization: "Fixeroni Platform",
+      badge: "Marketplace & APIs",
       badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
       description:
-        "Architecting decentralized applications and verifiable smart contracts. Competed in BlockDAG hackathons designing DAG consensus supply chain tracking, and engineered DeFi analytics interfaces on Avalanche.",
+        "Leading the core backend architecture powering Fixeroni artisan marketplace. Designed resilient microservice APIs, PostGIS geolocation discovery, and escrow transaction state machines in Node.js and PostgreSQL.",
       points: [
-        "Implemented high-throughput smart contract calls with multi-call batching",
-        "Designed Merkle proof verification workflows for immutable cargo verification",
-        "Wrote automated contract test suites ensuring zero reentrancy risks",
+        "Implemented Redis rate limiting and concurrency locks handling artisan job dispatches",
+        "Constructed PostgreSQL relational schemas with strict ACID transactional guarantees",
+        "Integrated multi-channel webhook notifications and automated financial reconciliations",
+      ],
+    },
+    {
+      period: "2024 — Present",
+      role: "Core Web3 & Smart Contract Engineer",
+      organization: "StormSale Protocol",
+      badge: "Affiliate Protocol",
+      badgeColor: "bg-violet-500/10 text-violet-400 border-violet-500/20",
+      description:
+        "Architecting decentralized affiliate marketing smart contracts and automated commission payouts with zero counterparty custody risk.",
+      points: [
+        "Implemented smart contract escrow splits for automated on-chain referral payouts",
+        "Engineered cryptographic signature verification preventing referral link tampering",
+        "Deployed live production dashboard at stormsale-one.vercel.app with multi-wallet connectors",
       ],
     },
     {
       period: "2024",
-      role: "Smart Contract Architect (Clarity)",
-      organization: "Stacks Ecosystem Contest",
-      badge: "Bitcoin L2 Contest",
+      role: "Soroban Smart Contract & Payments Engineer",
+      organization: "Stellar Ecosystem (IndigoPay & Accensa)",
+      badge: "Stellar / Soroban",
       badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
       description:
-        "Engineered the $LEO Token contract primitives and community distribution mechanics using Clarity, anchoring security and execution finality into Bitcoin blocks.",
+        "Developed Soroban smart contracts in Rust and merchant infrastructure on Stellar network, including Stellar-IndigoPay climate donations and Accensa x402 payment back-office.",
       points: [
-        "Leveraged Clarity's decidable language to eliminate unexpected gas out-of-bounds",
-        "Built automated token vesting and community staking logic",
-        "Validated state transitions with Clarinet CLI and unit test frameworks",
+        "Authored Rust Soroban contracts for non-custodial donation routing and dynamic badge minting",
+        "Constructed on-chain transaction indexer and modular @accensa/sdk TypeScript client library",
+        "Shipped live deployments at stellar-indigo-pay.vercel.app and accensa-dashboard.vercel.app",
       ],
     },
     {
-      period: "2023 — Present",
-      role: "Backend & Systems Engineer",
-      organization: "StormSale & Fixeroni Projects",
-      badge: "High-Throughput APIs",
-      badgeColor: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-      description:
-        "Engineered backend API microservices, Redis caching clusters, and relational database layers powering production marketplace and affiliate systems.",
-      points: [
-        "Implemented Redis rate limiting and session stores handling heavy concurrent traffic",
-        "Constructed PostgreSQL relational schemas with strict indexes and transactional locks",
-        "Integrated third-party payment webhooks, automated notifications, and escrow holds",
-      ],
-    },
-    {
-      period: "Ongoing",
-      role: "Student Software Engineer",
-      organization: "Computer Science & Engineering",
-      badge: "Academic Foundations",
+      period: "2024",
+      role: "Oracle & Blockchain Contributor",
+      organization: "Pi-Defi-world (Zyra Teams)",
+      badge: "DeFi & Oracles",
       badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
       description:
-        "Deepening computer science foundations across data structures, distributed systems, relational database theory, and cryptographic consensus algorithms.",
+        "Engineered Zyrachain oracle server in Node.js and contributed to decentralized wallet protocol components for the Pi-Defi ecosystem.",
       points: [
-        "Specializing in modern asynchronous runtime architectures and distributed state",
-        "Actively contributing to open-source developer communities and Web3 research",
+        "Built cryptographic price feed feeds and data relay handlers connecting off-chain telemetry",
+        "Developed unit testing pipelines and RPC listener microservices",
       ],
     },
   ];
