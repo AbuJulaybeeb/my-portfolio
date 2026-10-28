@@ -7,10 +7,10 @@ import {
   ExternalLink,
   ArrowUpRight,
   Maximize2,
-  Globe,
 } from "lucide-react";
 import { GitHubIcon } from "./SocialIcons";
 import ProjectModal, { ProjectData } from "./ProjectModal";
+import ProjectPreviewFrame from "./ProjectPreviewFrame";
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -235,14 +235,8 @@ export default function Projects() {
         {/* Projects Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence>
-            {filteredProjects.map((project, idx) => {
-              const displayDomain = project.liveUrl
-                .replace(/^https?:\/\//, "")
-                .replace(/\/$/, "");
-              const previewSrc = `/api/preview?url=${encodeURIComponent(project.liveUrl)}`;
-
-              return (
-                <motion.div
+            {filteredProjects.map((project, idx) => (
+              <motion.div
                   key={project.id}
                   layout
                   initial={{ opacity: 0, y: 20 }}
@@ -251,54 +245,13 @@ export default function Projects() {
                   transition={{ duration: 0.4, delay: idx * 0.06 }}
                   className="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500/40 flex flex-col justify-between"
                 >
-                  {/* Live Web Browser Mockup Header & Preview Frame */}
-                  <div className="relative w-full bg-[#0a0d16] border-b border-white/10 flex flex-col">
-                    {/* Simulated Browser Bar */}
-                    <div className="px-3.5 py-2.5 bg-[#0e121d] border-b border-white/5 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                      </div>
-
-                      {/* Domain Badge */}
-                      <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-black/60 border border-white/5 text-[10px] text-slate-300 max-w-[200px] truncate">
-                        <Globe className="w-2.5 h-2.5 text-cyan-400 shrink-0" />
-                        <span className="truncate">{displayDomain}</span>
-                      </div>
-
-                      {/* Live Badge */}
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        LIVE
-                      </span>
-                    </div>
-
-                    {/* Interactive Live URL Frame / Viewport */}
-                    <div
-                      className="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden cursor-pointer"
-                      onClick={() => setActiveModalProject(project)}
-                    >
-                      <iframe
-                        src={previewSrc}
-                        title={`${project.title} Preview`}
-                        className="w-[1280px] h-[800px] origin-top-left scale-[0.32] sm:scale-[0.34] md:scale-[0.29] lg:scale-[0.31] pointer-events-none border-0 bg-white"
-                        loading="lazy"
-                        sandbox="allow-scripts allow-same-origin allow-forms"
-                      />
-
-                      {/* Subtle Overlay to Prevent Dragging & Add Cyber Feel */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
-
-                      {/* Hover Overlay with Preview Trigger */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-[2px]">
-                        <span className="px-3.5 py-2 rounded-xl bg-cyan-400 text-black font-mono text-xs font-semibold shadow-lg flex items-center gap-1.5">
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>Interactive Preview</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  {/* High-Performance Lazy Live Web Browser Mockup */}
+                  <ProjectPreviewFrame
+                    url={project.liveUrl}
+                    title={project.title}
+                    accentColor="cyan"
+                    onOpenModal={() => setActiveModalProject(project)}
+                  />
 
                   {/* Body Content */}
                   <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
@@ -378,8 +331,7 @@ export default function Projects() {
                     </div>
                   </div>
                 </motion.div>
-              );
-            })}
+            ))}
           </AnimatePresence>
         </motion.div>
 

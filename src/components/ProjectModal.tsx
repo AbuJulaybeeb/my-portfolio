@@ -181,7 +181,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 src={`/api/preview?url=${encodeURIComponent(project.liveUrl)}`}
                 title={`${project.title} Live Preview`}
                 className="w-full h-full border-0 bg-white"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                sandbox="allow-scripts allow-forms allow-popups"
                 loading="lazy"
               />
 

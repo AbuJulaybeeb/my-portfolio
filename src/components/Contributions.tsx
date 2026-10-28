@@ -7,10 +7,10 @@ import {
   ExternalLink,
   ArrowUpRight,
   Maximize2,
-  Globe,
 } from "lucide-react";
 import { GitHubIcon } from "./SocialIcons";
 import ProjectModal, { ProjectData } from "./ProjectModal";
+import ProjectPreviewFrame from "./ProjectPreviewFrame";
 
 export default function Contributions() {
   const [selectedFilter, setSelectedFilter] = useState<
@@ -105,25 +105,25 @@ export default function Contributions() {
       tech: ["Next.js", "Web3.js", "Node.js", "Tailwind CSS", "IPFS"],
     },
     {
-      id: "b-buildathon",
-      title: "B.Buildathon Board",
-      category: "Hackathon Leaderboard DApp",
+      id: "stellar-dev-dashboard",
+      title: "Stellar Dev Dashboard",
+      category: "Developer Telemetry & Indexer",
       type: "web3",
-      filterCategory: "creator",
-      role: "Contributor (Leaderboard & Verification)",
-      liveUrl: "https://b-buildathon-board.vercel.app",
-      githubUrl: "https://github.com/AbuJulaybeeb/B.Buildathon-Board",
+      filterCategory: "stellar",
+      role: "Contributor (Ledger Indexer & RPC Telemetry)",
+      liveUrl: "https://stellar-dev-dashboard.vercel.app",
+      githubUrl: "https://github.com/AbuJulaybeeb/stellar-dev-dashboard",
       description:
-        "Interactive hackathon leaderboard and submission verification board built for ecosystem builders and developer competitions.",
+        "Interactive developer telemetry and ecosystem dashboard on Stellar, monitoring Soroban contract invocations, ledger metrics, and transaction latency.",
       longDescription:
-        "Contributed to the B.Buildathon Board application for real-time hackathon team scoring, project submission verification, and builder showcase rankings.",
+        "Contributed to developer tools on Stellar with the Stellar Dev Dashboard. Provides real-time visibility into Soroban smart contract invocations, network throughput, fee telemetry, and RPC health metrics.",
       highlights: [
-        "Real-time builder team submission verification",
-        "Dynamic leaderboard ranking algorithms and scoring breakdown",
-        "Responsive competition UI with GitHub repo link integration",
-        "Live deployment at b-buildathon-board.vercel.app",
+        "Real-time Soroban RPC network telemetry",
+        "Ledger transaction throughput & fee visualizer",
+        "Developer-centric contract status inspection",
+        "Live deployment at stellar-dev-dashboard.vercel.app",
       ],
-      tech: ["React", "Next.js", "Tailwind CSS", "Web3"],
+      tech: ["Stellar", "Next.js", "TypeScript", "Soroban", "Tailwind CSS"],
     },
     {
       id: "lumenpulse",
@@ -223,65 +223,23 @@ export default function Contributions() {
         {/* Contributions Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence>
-            {filteredContributions.map((item, idx) => {
-              const displayDomain = item.liveUrl
-                .replace(/^https?:\/\//, "")
-                .replace(/\/$/, "");
-              const previewSrc = `/api/preview?url=${encodeURIComponent(item.liveUrl)}`;
-
-              return (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-violet-500/40 flex flex-col justify-between"
-                >
-                  {/* Browser Mockup Header & Preview Frame */}
-                  <div className="relative w-full bg-[#0a0d16] border-b border-white/10 flex flex-col">
-                    <div className="px-3.5 py-2.5 bg-[#0e121d] border-b border-white/5 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                      </div>
-
-                      <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-black/60 border border-white/5 text-[10px] text-slate-300 max-w-[200px] truncate">
-                        <Globe className="w-2.5 h-2.5 text-violet-400 shrink-0" />
-                        <span className="truncate">{displayDomain}</span>
-                      </div>
-
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        LIVE
-                      </span>
-                    </div>
-
-                    {/* Interactive Frame */}
-                    <div
-                      className="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden cursor-pointer"
-                      onClick={() => setActiveModalProject(item)}
-                    >
-                      <iframe
-                        src={previewSrc}
-                        title={`${item.title} Preview`}
-                        className="w-[1280px] h-[800px] origin-top-left scale-[0.32] sm:scale-[0.34] md:scale-[0.29] lg:scale-[0.31] pointer-events-none border-0 bg-white"
-                        loading="lazy"
-                        sandbox="allow-scripts allow-same-origin allow-forms"
-                      />
-
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
-
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-[2px]">
-                        <span className="px-3.5 py-2 rounded-xl bg-violet-600 text-white font-mono text-xs font-semibold shadow-lg flex items-center gap-1.5">
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>Interactive Preview</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+            {filteredContributions.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-violet-500/40 flex flex-col justify-between"
+              >
+                {/* High-Performance Lazy Live Web Browser Mockup */}
+                <ProjectPreviewFrame
+                  url={item.liveUrl}
+                  title={item.title}
+                  accentColor="violet"
+                  onOpenModal={() => setActiveModalProject(item)}
+                />
 
                   {/* Body Content */}
                   <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
@@ -354,8 +312,7 @@ export default function Contributions() {
                     </div>
                   </div>
                 </motion.div>
-              );
-            })}
+            ))}
           </AnimatePresence>
         </motion.div>
 

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-
 export async function GET(request: NextRequest) {
   const urlParam = request.nextUrl.searchParams.get("url");
   if (!urlParam) {
@@ -10,31 +9,21 @@ export async function GET(request: NextRequest) {
   try {
     const targetUrl = new URL(urlParam);
 
-    // Whitelist allowed hostnames for previewing
-    const allowedHosts = [
-      "stormsale-one.vercel.app",
-      "storm-sale.vercel.app",
-      "vera-os-xi.vercel.app",
-      "stellar-market-pay.vercel.app",
-      "northdemy.com",
-      "360radiotv.com",
-      "sicolines.com",
-      "zyradex.com",
-      "fixeroni-page.netlify.app",
-      "accensa-dashboard.vercel.app",
-      "stellar-indigo-pay.vercel.app",
-      "safe-swap-landing.vercel.app",
-      "audio-blocks-frontend-v1.vercel.app",
-      "b-buildathon-board.vercel.app",
-      "starkpulse.vercel.app",
-      "eduvault-alpha.vercel.app",
-    ];
+    // Whitelist check: allow valid project hosts, custom domains, and Vercel/Netlify preview deployments
+    const hostname = targetUrl.hostname.toLowerCase();
+    const isAllowed =
+      hostname.endsWith(".vercel.app") ||
+      hostname.endsWith(".netlify.app") ||
+      hostname === "northdemy.com" ||
+      hostname.endsWith(".northdemy.com") ||
+      hostname === "360radiotv.com" ||
+      hostname.endsWith(".360radiotv.com") ||
+      hostname === "sicolines.com" ||
+      hostname.endsWith(".sicolines.com") ||
+      hostname === "zyradex.com" ||
+      hostname.endsWith(".zyradex.com");
 
-    const hostAllowed = allowedHosts.some(
-      (host) => targetUrl.hostname === host || targetUrl.hostname.endsWith("." + host)
-    );
-
-    if (!hostAllowed) {
+    if (!isAllowed) {
       return new NextResponse("Hostname not allowed for preview proxy", { status: 403 });
     }
 
@@ -48,27 +37,139 @@ export async function GET(request: NextRequest) {
     });
 
     if (!upstreamRes.ok) {
-      return new NextResponse(
-        `Upstream returned status ${upstreamRes.status}: ${upstreamRes.statusText}`,
-        { status: upstreamRes.status }
-      );
+      // Graceful styled fallback page if upstream returns 404 or error
+      const fallbackHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${targetUrl.hostname} Standby</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #06070a;
+      color: #94a3b8;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px 24px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      margin-bottom: 16px;
+    }
+    h2 {
+      color: #ffffff;
+      font-size: 17px;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    p {
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+      color: #94a3b8;
+    }
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #38bdf8;
+      color: #000000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">● LIVE PORTAL STANDBY</div>
+    <h2>${targetUrl.hostname}</h2>
+    <p>This deployment is currently in standby mode or cycling releases. Access the verified endpoint directly below.</p>
+    <a href="${targetUrl.toString()}" target="_blank" rel="noopener noreferrer">Launch Destination Portal ↗</a>
+  </div>
+</body>
+</html>`;
+      return new NextResponse(fallbackHtml, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/html; charset=utf-8",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Cache-Control": "public, max-age=300",
+        },
+      });
     }
 
     let html = await upstreamRes.text();
 
-    // Inject base href tag so all relative assets, scripts, and styles resolve to upstream origin
+    // Inject base href tag and frame-protection interceptor script
     const baseHref = `${targetUrl.protocol}//${targetUrl.host}/`;
+    const interceptorScript = `
+<base href="${baseHref}" target="_blank">
+<script>
+  try {
+    // Isolate top and parent to prevent frame busting
+    window.top = window.self;
+    window.parent = window.self;
+  } catch (e) {}
+
+  // Intercept relative fetch requests and route them to real origin to avoid 404s on host
+  (function() {
+    var realOrigin = "${targetUrl.origin}";
+    var originalFetch = window.fetch;
+    if (originalFetch) {
+      window.fetch = function(input, init) {
+        try {
+          if (typeof input === "string" && input.startsWith("/") && !input.startsWith("//")) {
+            input = realOrigin + input;
+          } else if (input && typeof input === "object" && input.url && input.url.indexOf(window.location.origin + "/") === 0) {
+            input = new Request(realOrigin + input.url.slice(window.location.origin.length), init || input);
+          }
+        } catch (err) {}
+        return originalFetch.call(this, input, init);
+      };
+    }
+  })();
+</script>`;
+
     if (html.includes("<head>")) {
-      html = html.replace("<head>", `<head><base href="${baseHref}">`);
+      html = html.replace("<head>", `<head>${interceptorScript}`);
     } else if (html.includes("<head ")) {
-      html = html.replace(/<head[^>]*>/, `$&<base href="${baseHref}">`);
+      html = html.replace(/<head[^>]*>/, `$&${interceptorScript}`);
     }
 
     return new NextResponse(html, {
       status: 200,
       headers: {
         "Content-Type": "text/html; charset=utf-8",
-        // Permissive framing header to allow embedding in our own portfolio app
         "X-Frame-Options": "SAMEORIGIN",
         "Cache-Control": "public, max-age=1800, s-maxage=3600",
       },

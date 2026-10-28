@@ -56,8 +56,8 @@ Dedicated section showcasing impactful open-source contributions across protocol
    - Repo: [AbuJulaybeeb/SafeSwap](https://github.com/AbuJulaybeeb/SafeSwap)
 4. **[AudioBlocks](https://audio-blocks-frontend-v1.vercel.app)** — Web3 Music Streaming & Creator Royalties
    - Repo: [AbuJulaybeeb/AudioBlocks_Frontend_v1](https://github.com/AbuJulaybeeb/AudioBlocks_Frontend_v1)
-5. **[B.Buildathon Board](https://b-buildathon-board.vercel.app)** — Hackathon Leaderboard & Builder Verification
-   - Repo: [AbuJulaybeeb/B.Buildathon-Board](https://github.com/AbuJulaybeeb/B.Buildathon-Board)
+5. **[Stellar Dev Dashboard](https://stellar-dev-dashboard.vercel.app)** — Developer Telemetry & Ledger Indexer
+   - Repo: [AbuJulaybeeb/stellar-dev-dashboard](https://github.com/AbuJulaybeeb/stellar-dev-dashboard)
 6. **[Lumenpulse](https://starkpulse.vercel.app/)** — Stellar Blockchain News & Analytics Feed
    - Repo: [AbuJulaybeeb/Lumenpulse](https://github.com/AbuJulaybeeb/Lumenpulse)
 7. **[EduVault](https://eduvault-alpha.vercel.app)** — Student-Owned Credential Storage & IPFS Archiving
