@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Globe, Loader2, Maximize2, ShieldCheck } from "lucide-react";
+import { Globe, Loader2, Maximize2, ShieldCheck, ExternalLink } from "lucide-react";
+import { getProjectPreviewSrc } from "@/lib/preview";
 
 interface ProjectPreviewFrameProps {
   url: string;
@@ -16,12 +17,18 @@ export default function ProjectPreviewFrame({
   onOpenModal,
 }: ProjectPreviewFrameProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+
   const [inView, setInView] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasTimedOut, setHasTimedOut] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
+  const [scale, setScale] = useState<number>(0.28);
 
   const displayDomain = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const previewSrc = `/api/preview?url=${encodeURIComponent(url)}`;
+  const proxySrc = `/api/preview?url=${encodeURIComponent(url)}`;
+  const defaultSrc = getProjectPreviewSrc(url);
+  const effectiveSrc = hasFailed ? proxySrc : defaultSrc;
 
   // Lazy-load iframe only when card scrolls near the viewport
   useEffect(() => {
@@ -35,21 +42,40 @@ export default function ProjectPreviewFrame({
           observer.disconnect();
         }
       },
-      { rootMargin: "250px" }
+      { rootMargin: "300px" }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  // Compute exact responsive scale factor so 1280x800 desktop canvas fits container 100% perfectly
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+
+    const updateScale = () => {
+      const w = el.clientWidth;
+      if (w > 0) {
+        setScale(w / 1280);
+      }
+    };
+
+    updateScale();
+    const ro = new ResizeObserver(() => updateScale());
+    ro.observe(el);
+
+    return () => ro.disconnect();
+  }, [inView]);
+
   // Graceful fallback if an upstream site is cold-booting or takes > 10s
   useEffect(() => {
-    if (!inView || isLoaded) return;
+    if (!inView || isLoaded || hasFailed) return;
     const timer = setTimeout(() => {
       setHasTimedOut(true);
     }, 10000);
     return () => clearTimeout(timer);
-  }, [inView, isLoaded]);
+  }, [inView, isLoaded, hasFailed]);
 
   const accentBorder =
     accentColor === "violet" ? "hover:border-violet-500/40" : "hover:border-cyan-500/40";
@@ -86,36 +112,52 @@ export default function ProjectPreviewFrame({
 
       {/* Frame Viewport */}
       <div
+        ref={viewportRef}
         className="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden cursor-pointer"
         onClick={onOpenModal}
       >
         {inView ? (
           <>
             <iframe
-              src={previewSrc}
+              src={effectiveSrc}
               title={`${title} Preview`}
-              className={`w-[1280px] h-[800px] origin-top-left scale-[0.32] sm:scale-[0.34] md:scale-[0.29] lg:scale-[0.31] pointer-events-none border-0 bg-white transition-opacity duration-500 ${
-                isLoaded ? "opacity-100" : "opacity-0"
+              style={{
+                width: "1280px",
+                height: "800px",
+                transform: `scale(${scale})`,
+                transformOrigin: "top left",
+              }}
+              className={`pointer-events-none border-0 bg-white transition-opacity duration-500 ${
+                isLoaded && !hasFailed ? "opacity-100" : "opacity-0"
               }`}
               loading="lazy"
-              sandbox="allow-scripts allow-forms"
-              onLoad={() => setIsLoaded(true)}
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+              onLoad={() => {
+                setIsLoaded(true);
+                setHasFailed(false);
+              }}
+              onError={() => {
+                setHasFailed(true);
+              }}
             />
 
             {/* Loading Shimmer / Standby State */}
-            {!isLoaded && !hasTimedOut && (
+            {!isLoaded && !hasTimedOut && !hasFailed && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#06080e] text-slate-400 font-mono text-xs">
                 <Loader2 className={`w-5 h-5 animate-spin ${iconColor}`} />
                 <span className="text-[11px] text-slate-500">Connecting to {displayDomain}...</span>
               </div>
             )}
 
-            {/* Standby Card if Upstream takes time */}
-            {!isLoaded && hasTimedOut && (
+            {/* Standby Card if Upstream takes time or errors */}
+            {(!isLoaded && (hasTimedOut || hasFailed)) && (
               <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-[#07090f] text-center space-y-2">
                 <ShieldCheck className="w-6 h-6 text-emerald-400" />
                 <span className="font-mono text-xs text-white font-bold">{displayDomain}</span>
-                <span className="font-mono text-[10px] text-slate-400">Click to inspect in sandbox or open direct</span>
+                <span className="font-mono text-[10px] text-slate-400 flex items-center justify-center gap-1">
+                  <span>Verified Live Portal</span>
+                  <ExternalLink className="w-3 h-3 text-cyan-400" />
+                </span>
               </div>
             )}
           </>

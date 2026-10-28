@@ -130,18 +130,25 @@ export async function GET(request: NextRequest) {
 
     let html = await upstreamRes.text();
 
-    // Inject base href tag and frame-protection interceptor script
+    // Strip any meta tags that enforce CSP or XFO client-side
+    html = html.replace(/<meta[^>]*http-equiv=["']?(?:content-security-policy|x-frame-options)["']?[^>]*>/gi, "");
+
+    // Inject base href tag, frame-busting isolation, and asset request interceptor
     const baseHref = `${targetUrl.protocol}//${targetUrl.host}/`;
     const interceptorScript = `
 <base href="${baseHref}" target="_blank">
 <script>
   try {
-    // Isolate top and parent to prevent frame busting
-    window.top = window.self;
-    window.parent = window.self;
-  } catch (e) {}
+    Object.defineProperty(window, 'top', { get: function() { return window; }, set: function() {}, configurable: true });
+    Object.defineProperty(window, 'parent', { get: function() { return window; }, set: function() {}, configurable: true });
+  } catch (e) {
+    try {
+      window.top = window.self;
+      window.parent = window.self;
+    } catch (err) {}
+  }
 
-  // Intercept relative fetch requests and route them to real origin to avoid 404s on host
+  // Intercept relative fetch and XHR requests and route them to real origin to avoid 404s on host
   (function() {
     var realOrigin = "${targetUrl.origin}";
     var originalFetch = window.fetch;
@@ -155,6 +162,17 @@ export async function GET(request: NextRequest) {
           }
         } catch (err) {}
         return originalFetch.call(this, input, init);
+      };
+    }
+    if (window.XMLHttpRequest) {
+      var originalOpen = window.XMLHttpRequest.prototype.open;
+      window.XMLHttpRequest.prototype.open = function(method, url) {
+        try {
+          if (typeof url === "string" && url.startsWith("/") && !url.startsWith("//")) {
+            url = realOrigin + url;
+          }
+        } catch (err) {}
+        return originalOpen.apply(this, arguments);
       };
     }
   })();

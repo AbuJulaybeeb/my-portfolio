@@ -13,8 +13,10 @@ import {
   Smartphone,
   Tablet,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
 import { GitHubIcon } from "./SocialIcons";
+import { requiresPreviewProxy } from "@/lib/preview";
 
 export interface ProjectData {
   id: string;
@@ -36,26 +38,37 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  if (!project) return null;
+  return <ProjectModalDialog key={project.id} project={project} onClose={onClose} />;
+}
+
+function ProjectModalDialog({ project, onClose }: { project: ProjectData; onClose: () => void }) {
   const [viewMode, setViewMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [iframeKey, setIframeKey] = useState(0);
+  const [isModalLoaded, setIsModalLoaded] = useState(false);
+  const [useProxy, setUseProxy] = useState(() => requiresPreviewProxy(project.liveUrl));
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    if (project) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [project, onClose]);
+  }, [onClose]);
 
-  if (!project) return null;
 
   const reloadIframe = () => {
+    setIsModalLoaded(false);
+    setIframeKey((prev) => prev + 1);
+  };
+
+  const toggleProxyMode = () => {
+    setIsModalLoaded(false);
+    setUseProxy((prev) => !prev);
     setIframeKey((prev) => prev + 1);
   };
 
@@ -69,6 +82,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         return "w-full";
     }
   };
+
+  const effectiveSrc = useProxy
+    ? `/api/preview?url=${encodeURIComponent(project.liveUrl)}`
+    : project.liveUrl;
+
+  const displayDomain = project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
   return (
     <div
@@ -118,6 +137,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               >
                 <RefreshCw className="w-3.5 h-3.5" />
               </button>
+
+              <button
+                onClick={toggleProxyMode}
+                className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 transition-colors"
+                title="Toggle between Direct Embed and Sandboxed Proxy"
+              >
+                <span>{useProxy ? "Proxy Mode" : "Direct Mode"}</span>
+              </button>
             </div>
 
             {/* Address Bar */}
@@ -125,7 +152,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <Globe className="w-3 h-3 text-cyan-400 shrink-0" />
               <span className="text-slate-400">https://</span>
               <span className="text-cyan-300 truncate">
-                {project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                {displayDomain}
               </span>
             </div>
 
@@ -177,19 +204,35 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="relative w-full h-[420px] sm:h-[500px] bg-slate-950 flex items-center justify-center overflow-hidden">
             <div className={`h-full transition-all duration-300 mx-auto ${getContainerWidth()} relative w-full`}>
               <iframe
-                key={`${project.id}-${iframeKey}`}
-                src={`/api/preview?url=${encodeURIComponent(project.liveUrl)}`}
+                key={`${project.id}-${iframeKey}-${useProxy ? "proxied" : "direct"}`}
+                src={effectiveSrc}
                 title={`${project.title} Live Preview`}
-                className="w-full h-full border-0 bg-white"
-                sandbox="allow-scripts allow-forms allow-popups"
+                className={`w-full h-full border-0 bg-white transition-opacity duration-300 ${
+                  isModalLoaded ? "opacity-100" : "opacity-0"
+                }`}
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 loading="lazy"
+                onLoad={() => setIsModalLoaded(true)}
+                onError={() => {
+                  if (!useProxy) {
+                    setUseProxy(true);
+                  }
+                }}
               />
+
+              {/* Modal Loading Spinner */}
+              {!isModalLoaded && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#06080e] text-slate-400 font-mono text-xs">
+                  <Loader2 className="w-6 h-6 animate-spin text-cyan-400" />
+                  <span className="text-slate-400">Loading {displayDomain}...</span>
+                </div>
+              )}
 
               {/* Floating Fallback Bar */}
               <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/85 backdrop-blur-md border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-300">
                 <span className="flex items-center gap-1.5 truncate">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Previewing Live Site: <strong className="text-white">{project.liveUrl}</strong></span>
+                  <span>Previewing Live Site: <strong className="text-white">{displayDomain}</strong></span>
                 </span>
                 <a
                   href={project.liveUrl}
@@ -204,6 +247,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           </div>
         </div>
+
 
         {/* Project Details */}
         <div className="space-y-4">
