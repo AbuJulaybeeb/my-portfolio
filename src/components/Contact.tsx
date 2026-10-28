@@ -158,7 +158,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/AJDEV01"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center justify-center p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all group"

@@ -1,42 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, Shield, Zap, GitBranch } from "lucide-react";
+import { Terminal, Zap, GitBranch, Building2 } from "lucide-react";
 
 export default function StatsBar() {
   const stats = [
     {
       icon: Terminal,
-      value: "2+ Years",
-      label: "Industry & Web3 Experience",
-      detail: "Scalable APIs & DApps",
+      value: "3+ Years",
+      label: "Full-Stack Development",
+      detail: "Modern Web, Scalable APIs & Systems",
       color: "text-cyan-400",
       bgColor: "bg-cyan-500/10",
       borderColor: "border-cyan-500/20",
     },
     {
-      icon: GitBranch,
-      value: "10+",
-      label: "Shipped Projects & Contracts",
-      detail: "Full-Stack & Backend",
+      icon: Zap,
+      value: "2+ Years",
+      label: "Web3 & Smart Contracts",
+      detail: "Soroban, EVM, DeFi & Protocols",
       color: "text-violet-400",
       bgColor: "bg-violet-500/10",
       borderColor: "border-violet-500/20",
     },
     {
-      icon: Shield,
-      value: "100%",
-      label: "Clean Code & Test Coverage",
-      detail: "Deterministic Contracts",
+      icon: GitBranch,
+      value: "230+",
+      label: "GitHub Repositories",
+      detail: "Active Open-Source & Production Builder",
       color: "text-emerald-400",
       bgColor: "bg-emerald-500/10",
       borderColor: "border-emerald-500/20",
     },
     {
-      icon: Zap,
-      value: "3+",
-      label: "Decentralized Ecosystems",
-      detail: "Avalanche, BlockDAG, Stacks",
+      icon: Building2,
+      value: "7",
+      label: "Active Orgs & Collaborations",
+      detail: "Northdemy, VeraOS, PI-DEFI & More",
       color: "text-amber-400",
       bgColor: "bg-amber-500/10",
       borderColor: "border-amber-500/20",

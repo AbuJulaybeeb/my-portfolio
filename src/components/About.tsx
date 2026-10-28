@@ -152,18 +152,13 @@ export default function About() {
 
             <div className="text-slate-300 text-sm leading-relaxed space-y-4">
               <p>
-                Hi, I’m Jibril. I am a full-stack developer with a passion for clean code, 
-                user-centric design, and deterministic decentralized systems.
+                Hi, I’m Jibril. I bring <strong className="text-white">3+ years of experience as a software developer</strong> and <strong className="text-white">2+ years specializing as a Web3 & smart contract engineer</strong>, building reliable web architectures and deterministic on-chain protocols.
               </p>
               <p>
-                Currently building high-throughput backend services at{" "}
-                <strong className="text-cyan-300">Fixeroni</strong>, engineering Web3 affiliate protocols at{" "}
-                <strong className="text-cyan-300">StormSale</strong>, and developing smart contracts across{" "}
-                <span className="text-violet-400 font-medium">Stellar (Soroban), Avalanche, and BlockDAG</span>.
+                Currently working with <strong className="text-emerald-400">Northdemy</strong> (where I revamped the educational system on Hostinger at <a href="https://northdemy.com" target="_blank" rel="noopener noreferrer" className="underline">northdemy.com</a>), collaborator on <strong className="text-violet-400">PI-DEFI</strong> (ZyraDex AMM & Zyrachain), co-developer & co-owner of <strong className="text-cyan-300">Vera Protocol / VeraOS</strong> (the verification layer for autonomous AI agents), and founder/CEO of <strong className="text-amber-400">StormSale</strong>.
               </p>
               <p>
-                With over <strong className="text-white">230+ repositories on GitHub</strong> and active membership 
-                in 7 developer organizations, I thrive on writing production-ready code from database layers to on-chain logic.
+                My production track record also includes architecting <strong className="text-white">360RadioTV</strong> (24/7 continuous broadcast streaming), co-building <strong className="text-white">Sicolines</strong> (maritime logistics portal), and leading backend systems at <strong className="text-white">Fixeroni</strong>.
               </p>
             </div>
 
@@ -172,9 +167,9 @@ export default function About() {
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                 <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono">
                   <GraduationCap className="w-4 h-4" />
-                  <span>230+ Repos</span>
+                  <span>3+ Yrs Dev</span>
                 </div>
-                <div className="text-[11px] text-slate-400">Open source & production projects</div>
+                <div className="text-[11px] text-slate-400">2+ Years Web3 & Protocols</div>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
@@ -182,7 +177,7 @@ export default function About() {
                   <Award className="w-4 h-4" />
                   <span>7 Active Orgs</span>
                 </div>
-                <div className="text-[11px] text-slate-400">Fixeroni, StormSale, Zyra, Stellar</div>
+                <div className="text-[11px] text-slate-400">Northdemy, VeraOS, PI-DEFI, StormSale</div>
               </div>
             </div>
 

@@ -1,63 +1,113 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, ChevronRight } from "lucide-react";
+import { Briefcase, ChevronRight, ExternalLink } from "lucide-react";
 
 export default function ExperienceTimeline() {
   const experiences = [
     {
       period: "2024 — Present",
-      role: "Backend Lead & Systems Architect",
-      organization: "Fixeroni Platform",
-      badge: "Marketplace & APIs",
-      badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+      role: "Lead Platform & Systems Architect",
+      organization: "NorthDemy Limited (Current Organization)",
+      badge: "Current Org",
+      badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+      liveUrl: "https://northdemy.com",
       description:
-        "Leading the core backend architecture powering Fixeroni artisan marketplace. Designed resilient microservice APIs, PostGIS geolocation discovery, and escrow transaction state machines in Node.js and PostgreSQL.",
+        "Leading platform engineering and system revamping for Northdemy (northdemy.com). Overhauled core web infrastructure on Hostinger, optimized application throughput, student cohort pipelines, and high-concurrency database queries.",
       points: [
-        "Implemented Redis rate limiting and concurrency locks handling artisan job dispatches",
-        "Constructed PostgreSQL relational schemas with strict ACID transactional guarantees",
-        "Integrated multi-channel webhook notifications and automated financial reconciliations",
+        "Architectural revamping deployed to production on Hostinger cloud infrastructure",
+        "Optimized page load speeds, resource bundling, and responsive cohort enrollment workflows",
+        "Modernized database schema and API endpoints for frictionless student course delivery",
       ],
     },
     {
       period: "2024 — Present",
-      role: "Core Web3 & Smart Contract Engineer",
+      role: "Co-Developer & Co-Owner",
+      organization: "Vera Protocol (VeraOS)",
+      badge: "Autonomous AI Verification",
+      badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+      liveUrl: "https://vera-os-xi.vercel.app",
+      description:
+        "Co-architecting VeraOS (vera-os-xi.vercel.app), the decentralized verification layer for autonomous AI agents. Independently checking agent work, cryptographic evidence, and deterministic execution outcomes before trust.",
+      points: [
+        "Co-developer and co-owner building decentralized AI agent proof verification protocols",
+        "Constructed cryptographic evidence validation and verifiable outcome attestations",
+        "Shipped live production interface deployed at vera-os-xi.vercel.app",
+      ],
+    },
+    {
+      period: "2024 — Present",
+      role: "CEO, Lead Full-Stack & Smart Contract Developer",
       organization: "StormSale Protocol",
-      badge: "Affiliate Protocol",
-      badgeColor: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-      description:
-        "Architecting decentralized affiliate marketing smart contracts and automated commission payouts with zero counterparty custody risk.",
-      points: [
-        "Implemented smart contract escrow splits for automated on-chain referral payouts",
-        "Engineered cryptographic signature verification preventing referral link tampering",
-        "Deployed live production dashboard at stormsale-one.vercel.app with multi-wallet connectors",
-      ],
-    },
-    {
-      period: "2024",
-      role: "Soroban Smart Contract & Payments Engineer",
-      organization: "Stellar Ecosystem (IndigoPay & Accensa)",
-      badge: "Stellar / Soroban",
+      badge: "Founder & Web3 Protocol",
       badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+      liveUrl: "https://stormsale-one.vercel.app",
       description:
-        "Developed Soroban smart contracts in Rust and merchant infrastructure on Stellar network, including Stellar-IndigoPay climate donations and Accensa x402 payment back-office.",
+        "Founded and engineered StormSale (stormsale-one.vercel.app), a decentralized Web3 affiliate marketing protocol on Stellar Soroban with automated smart contract commission payouts.",
       points: [
-        "Authored Rust Soroban contracts for non-custodial donation routing and dynamic badge minting",
-        "Constructed on-chain transaction indexer and modular @accensa/sdk TypeScript client library",
-        "Shipped live deployments at stellar-indigo-pay.vercel.app and accensa-dashboard.vercel.app",
+        "Authored Soroban smart contracts for automated non-custodial referral fee distribution",
+        "Designed cryptographic referral signature verification preventing attribution fraud",
+        "Built responsive Web3 dashboard with Albedo, Freighter, and multi-wallet bridges",
+      ],
+    },
+    {
+      period: "2023 — Present",
+      role: "Core Collaborator & DeFi Protocol Engineer",
+      organization: "PI-DEFI World (Zyra Teams)",
+      badge: "DeFi & AMM",
+      badgeColor: "bg-violet-500/10 text-violet-400 border-violet-500/20",
+      liveUrl: "https://zyradex.com",
+      description:
+        "Collaborating on decentralized finance protocols on the Pi Network (zyradex.com), building the ZyraDex Automated Market Maker (AMM), oracle relays, and Zyrachain node infrastructure.",
+      points: [
+        "Contributed to ZyraDex AMM decentralized liquidity pools and swap state machines",
+        "Engineered Zyrachain oracle server handlers relaying off-chain financial telemetry",
+        "Enforced PiRC compliance and decentralized wallet connectivity standards",
       ],
     },
     {
       period: "2024",
-      role: "Oracle & Blockchain Contributor",
-      organization: "Pi-Defi-world (Zyra Teams)",
-      badge: "DeFi & Oracles",
-      badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+      role: "Lead Payment Protocol Engineer",
+      organization: "Stellar-MarketPay",
+      badge: "Soroban Merchant Payments",
+      badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+      liveUrl: "https://stellar-market-pay.vercel.app",
       description:
-        "Engineered Zyrachain oracle server in Node.js and contributed to decentralized wallet protocol components for the Pi-Defi ecosystem.",
+        "Engineered high-speed decentralized checkout and escrow settlement protocols on Stellar Soroban (stellar-market-pay.vercel.app) delivering sub-cent merchant transaction finality.",
       points: [
-        "Built cryptographic price feed feeds and data relay handlers connecting off-chain telemetry",
-        "Developed unit testing pipelines and RPC listener microservices",
+        "Implemented Soroban escrow contracts ensuring dual-party buyer/seller protection",
+        "Developed embedded checkout modal and real-time transaction listener indexing on-chain events",
+        "Shipped live production application deployed at stellar-market-pay.vercel.app",
+      ],
+    },
+    {
+      period: "2022 — 2024",
+      role: "Senior Full-Stack Developer",
+      organization: "Production Web Systems (360RadioTV & Sicolines)",
+      badge: "3+ Years Full-Stack",
+      badgeColor: "bg-teal-500/10 text-teal-400 border-teal-500/20",
+      liveUrl: "https://360radiotv.com",
+      description:
+        "Architected and delivered high-scale web platforms. Built 360RadioTV (360radiotv.com) with 24/7 continuous low-latency audio/video broadcast streaming. Co-built enterprise maritime logistics portal Sicolines (sicolines.com).",
+      points: [
+        "Engineered 360RadioTV broadcasting web platform with persistent background media playback",
+        "Co-built Sicolines enterprise logistics portal, cargo consignment tracking, and quote pipelines",
+        "Delivered responsive, highly optimized web applications with high availability and CDN caching",
+      ],
+    },
+    {
+      period: "2023 — Present",
+      role: "Backend Lead & Systems Architect",
+      organization: "Fixeroni Platform",
+      badge: "Marketplace & APIs",
+      badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+      liveUrl: "https://fixeroni-page.netlify.app/",
+      description:
+        "Leading the core backend architecture powering Fixeroni artisan marketplace (fixeroni-page.netlify.app). Designed resilient microservice APIs, PostGIS geolocation discovery, and escrow transaction state machines in Node.js and PostgreSQL.",
+      points: [
+        "Implemented Redis rate limiting and concurrency locks handling artisan job dispatches",
+        "Constructed PostgreSQL relational schemas with strict ACID transactional guarantees",
+        "Integrated multi-channel webhook notifications and automated financial reconciliations",
       ],
     },
   ];
@@ -70,13 +120,13 @@ export default function ExperienceTimeline() {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 font-mono text-xs uppercase tracking-wider">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Trajectory</span>
+            <span>Trajectory & Track Record</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Experience & <span className="text-gradient-purple">Milestones</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            A track record of shipping backend code, competing in hackathons, and solving hard technical challenges.
+            <strong className="text-white">3+ years</strong> of full-stack software development combined with <strong className="text-white">2+ years</strong> specializing in production Web3 protocols, smart contracts, and decentralized systems.
           </p>
         </div>
 
@@ -84,11 +134,11 @@ export default function ExperienceTimeline() {
         <div className="relative border-l border-white/10 ml-4 sm:ml-32 space-y-12">
           {experiences.map((exp, idx) => (
             <motion.div
-              key={exp.role}
+              key={exp.role + exp.organization}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="relative pl-6 sm:pl-10 group"
             >
               {/* Timeline Dot */}
@@ -111,8 +161,19 @@ export default function ExperienceTimeline() {
                     <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {exp.role}
                     </h3>
-                    <p className="text-xs sm:text-sm font-mono text-slate-300">
-                      {exp.organization}
+                    <p className="text-xs sm:text-sm font-mono text-slate-300 flex items-center gap-2 mt-0.5">
+                      <span>{exp.organization}</span>
+                      {exp.liveUrl && (
+                        <a
+                          href={exp.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-cyan-400 hover:underline inline-flex items-center gap-0.5"
+                          title="Open Live Deployment"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                     </p>
                   </div>
 

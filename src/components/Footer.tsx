@@ -48,11 +48,11 @@ export default function Footer() {
                 <LinkedInIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/AJDEV01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-cyan-400 hover:bg-white/10 transition-colors"
-                aria-label="Twitter"
+                aria-label="Twitter / X"
               >
                 <TwitterXIcon className="w-4 h-4" />
               </a>
@@ -71,28 +71,28 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">
-                  {"// 02. Capabilities"}
-                </a>
-              </li>
-              <li>
                 <a href="#organizations" className="hover:text-cyan-400 transition-colors">
-                  {"// 03. Organizations & Teams"}
+                  {"// 02. Organizations"}
                 </a>
               </li>
               <li>
                 <a href="#projects" className="hover:text-cyan-400 transition-colors">
-                  {"// 04. Selected Works"}
+                  {"// 03. Featured Projects"}
                 </a>
               </li>
               <li>
-                <a href="#terminal" className="hover:text-cyan-400 transition-colors">
-                  {"// 05. Developer Console"}
+                <a href="#contributions" className="hover:text-cyan-400 transition-colors">
+                  {"// 04. Web3 Contributions"}
                 </a>
               </li>
               <li>
                 <a href="#experience" className="hover:text-cyan-400 transition-colors">
-                  {"// 06. Trajectory & Milestones"}
+                  {"// 05. Experience"}
+                </a>
+              </li>
+              <li>
+                <a href="#terminal" className="hover:text-cyan-400 transition-colors">
+                  {"// 06. Interactive CLI"}
                 </a>
               </li>
               <li>

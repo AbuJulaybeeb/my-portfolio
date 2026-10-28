@@ -174,30 +174,31 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Embedded Live IFrame Preview */}
-          <div className="relative w-full h-[400px] sm:h-[480px] bg-slate-950 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full h-[420px] sm:h-[500px] bg-slate-950 flex items-center justify-center overflow-hidden">
             <div className={`h-full transition-all duration-300 mx-auto ${getContainerWidth()} relative w-full`}>
               <iframe
-                key={iframeKey}
-                src={project.liveUrl}
+                key={`${project.id}-${iframeKey}`}
+                src={`/api/preview?url=${encodeURIComponent(project.liveUrl)}`}
                 title={`${project.title} Live Preview`}
                 className="w-full h-full border-0 bg-white"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 loading="lazy"
               />
 
-              {/* Floating Fallback Bar if frame is restricted */}
-              <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  Live Previewing: <strong className="text-white">{project.liveUrl}</strong>
+              {/* Floating Fallback Bar */}
+              <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/85 backdrop-blur-md border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-300">
+                <span className="flex items-center gap-1.5 truncate">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Previewing Live Site: <strong className="text-white">{project.liveUrl}</strong></span>
                 </span>
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-cyan-400 hover:underline inline-flex items-center gap-1 font-semibold"
+                  className="text-cyan-400 hover:text-cyan-300 hover:underline inline-flex items-center gap-1 font-semibold shrink-0"
                 >
-                  Launch Fullscreen ↗
+                  <span>Open Fullscreen Tab</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>

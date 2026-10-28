@@ -65,10 +65,11 @@ export default function InteractiveTerminal() {
           <div className="space-y-1.5 text-xs text-slate-300">
             <p className="text-cyan-400 font-semibold">Available commands:</p>
             <p><span className="text-yellow-400 font-mono">bio</span> — Summary of engineering journey</p>
+            <p><span className="text-yellow-400 font-mono">orgs</span> — Active organizations & affiliations</p>
+            <p><span className="text-yellow-400 font-mono">projects</span> — Flagship production deployments</p>
             <p><span className="text-yellow-400 font-mono">skills</span> — Technical proficiency breakdown</p>
-            <p><span className="text-yellow-400 font-mono">projects</span> — List flagship productions</p>
             <p><span className="text-yellow-400 font-mono">chains</span> — Active Web3 ecosystems</p>
-            <p><span className="text-yellow-400 font-mono">contact</span> — Get contact coordinates</p>
+            <p><span className="text-yellow-400 font-mono">contact</span> — Get verified contact coordinates</p>
             <p><span className="text-yellow-400 font-mono">clear</span> — Clear terminal output</p>
           </div>
         );
@@ -78,12 +79,25 @@ export default function InteractiveTerminal() {
         output = (
           <div className="text-xs text-slate-300 space-y-1">
             <p>
-              Student and software engineer with 2+ years designing robust backend services
-              and high-performance decentralized applications.
+              Full-stack developer with <strong className="text-white">3+ years of software development experience</strong> and <strong className="text-white">2+ years specializing in Web3 protocols & smart contracts</strong>.
             </p>
             <p className="text-slate-400">
-              Passionate about zero-knowledge proofs, decentralized finance, and distributed database consistency.
+              Currently engineering with Northdemy (revamped platform on Hostinger), collaborator on PI-DEFI (ZyraDex), co-developer & co-owner of Vera Protocol / VeraOS, and founder/CEO of StormSale.
             </p>
+          </div>
+        );
+        break;
+
+      case "orgs":
+        output = (
+          <div className="space-y-1.5 text-xs text-slate-300">
+            <p className="text-cyan-400 font-semibold">Active Organizations & Collaborations:</p>
+            <p>1. <strong className="text-emerald-400">NorthDemy Limited</strong> — Current Org (northdemy.com - revamped on Hostinger)</p>
+            <p>2. <strong className="text-cyan-300">Vera Protocol</strong> — Co-Dev & Co-Owner (vera-os-xi.vercel.app - AI Agent Verification)</p>
+            <p>3. <strong className="text-violet-400">PI-DEFI World</strong> — Core Collaborator (zyradex.com - Pi Network DEX & AMM)</p>
+            <p>4. <strong className="text-amber-400">StormSale</strong> — Founder & CEO (stormsale-one.vercel.app - Web3 Affiliate Protocol)</p>
+            <p>5. <strong className="text-blue-400">Stellar-MarketPay</strong> — Core Protocol Dev (stellar-market-pay.vercel.app)</p>
+            <p>6. <strong className="text-teal-400">Fixeroni</strong> — Lead Backend & Systems Architect (fixeroni-page.netlify.app)</p>
           </div>
         );
         break;
@@ -92,9 +106,9 @@ export default function InteractiveTerminal() {
         output = (
           <div className="space-y-1 text-xs text-slate-300">
             <p><span className="text-cyan-400">Backend:</span> Node.js, Express, PostgreSQL, Redis, REST APIs, System Architecture</p>
-            <p><span className="text-violet-400">Web3:</span> Solidity, Avalanche (AVAX), BlockDAG, Stacks (Clarity), Smart Contracts</p>
+            <p><span className="text-violet-400">Web3:</span> Stellar (Soroban/Rust), Solidity, Pi Network DeFi, Smart Contracts</p>
             <p><span className="text-emerald-400">Frontend:</span> Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion</p>
-            <p><span className="text-amber-400">Tools:</span> Docker, Git, Linux, Postman, Clarinet, Hardhat</p>
+            <p><span className="text-amber-400">Platforms & Tools:</span> Hostinger, Vercel, Docker, Git, Linux, Postman</p>
           </div>
         );
         break;
@@ -102,13 +116,15 @@ export default function InteractiveTerminal() {
       case "projects":
         output = (
           <div className="space-y-1.5 text-xs text-slate-300">
-            <p className="text-cyan-400 font-semibold">Live Production Deployments:</p>
-            <p>1. <strong className="text-white">StormSale</strong> — Web3 Affiliate Platform (stormsale-one.vercel.app)</p>
-            <p>2. <strong className="text-white">Fixeroni</strong> — Marketplace API & Portal (fixeroni-page.netlify.app)</p>
-            <p>3. <strong className="text-white">Accensa App</strong> — Stellar x402 Back-Office (accensa-dashboard.vercel.app)</p>
-            <p>4. <strong className="text-white">Stellar-IndigoPay</strong> — Soroban Climate Donations (stellar-indigo-pay.vercel.app)</p>
-            <p>5. <strong className="text-white">SafeSwap</strong> — P2P Escrow Exchange (safe-swap-landing.vercel.app)</p>
-            <p>6. <strong className="text-white">AudioBlocks</strong> — Music Streaming Web3 (audio-blocks-frontend-v1.vercel.app)</p>
+            <p className="text-cyan-400 font-semibold">Featured Production Deployments:</p>
+            <p>1. <strong className="text-white">Northdemy</strong> — northdemy.com (Hostinger Educational Portal Revamp)</p>
+            <p>2. <strong className="text-white">StormSale</strong> — stormsale-one.vercel.app (Web3 Affiliate Protocol & DApp)</p>
+            <p>3. <strong className="text-white">360RadioTV</strong> — 360radiotv.com (24/7 Live Broadcast Streaming)</p>
+            <p>4. <strong className="text-white">Sicolines</strong> — sicolines.com (Enterprise Maritime Logistics)</p>
+            <p>5. <strong className="text-white">VeraOS</strong> — vera-os-xi.vercel.app (AI Agent Verification Protocol)</p>
+            <p>6. <strong className="text-white">Stellar-MarketPay</strong> — stellar-market-pay.vercel.app (Merchant Escrow Payments)</p>
+            <p>7. <strong className="text-white">ZyraDex</strong> — zyradex.com (Pi Network AMM & DEX)</p>
+            <p>8. <strong className="text-white">Fixeroni</strong> — fixeroni-page.netlify.app (Artisan Marketplace Platform)</p>
           </div>
         );
         break;
@@ -116,11 +132,10 @@ export default function InteractiveTerminal() {
       case "chains":
         output = (
           <div className="space-y-1 text-xs text-slate-300">
-            <p className="text-purple-400 font-semibold">• Stellar (Soroban) — Rust Smart Contracts & x402 Payments</p>
-            <p className="text-red-400 font-semibold">• Avalanche (AVAX) — C-Chain & Custom Subnets</p>
-            <p className="text-cyan-400 font-semibold">• BlockDAG — High-throughput DAG consensus</p>
-            <p className="text-orange-400 font-semibold">• Stacks (STX) — Bitcoin Layer-2 with Clarity</p>
-            <p className="text-blue-400 font-semibold">• Ethereum (EVM) — Standard ERC contracts</p>
+            <p className="text-purple-400 font-semibold">• Stellar (Soroban) — Rust Smart Contracts, StormSale & MarketPay</p>
+            <p className="text-violet-400 font-semibold">• Pi Network — ZyraDex AMM & Zyrachain Infrastructure</p>
+            <p className="text-blue-400 font-semibold">• Ethereum & EVM — Solidity Smart Contracts & Escrow</p>
+            <p className="text-cyan-400 font-semibold">• Autonomous AI Protocols — VeraOS Verification Layer</p>
           </div>
         );
         break;
@@ -128,10 +143,11 @@ export default function InteractiveTerminal() {
       case "contact":
         output = (
           <div className="space-y-1 text-xs text-slate-300">
-            <p>GitHub: <a href="https://github.com/AbuJulaybeeb" target="_blank" className="text-cyan-400 underline">github.com/AbuJulaybeeb</a></p>
-            <p>Email: <a href="mailto:abujulaybeeb08@gmail.com" className="text-cyan-400 underline">abujulaybeeb08@gmail.com</a></p>
-            <p>Twitter: <a href="https://twitter.com" target="_blank" className="text-cyan-400 underline">@j_r_qasim</a></p>
-            <p className="text-emerald-400 mt-1">Status: Open for Full-Time & Contract Web3/Backend Roles</p>
+            <p>Primary Email: <a href="mailto:abujulaybeeb08@gmail.com" className="text-cyan-400 underline font-semibold">abujulaybeeb08@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/AbuJulaybeeb" target="_blank" className="text-cyan-400 underline">github.com/AbuJulaybeeb (230+ repos)</a></p>
+            <p>Twitter / X: <a href="https://x.com/AJDEV01" target="_blank" className="text-cyan-400 underline">@AJDEV01</a></p>
+            <p>Telegram: <a href="https://t.me/AJDEV_Official" target="_blank" className="text-cyan-400 underline">@AJDEV_Official</a></p>
+            <p className="text-emerald-400 mt-1">Status: Open for Full-Time, Contract & High-Impact Web3 Engineering</p>
           </div>
         );
         break;
@@ -139,7 +155,7 @@ export default function InteractiveTerminal() {
       case "whoami":
         output = (
           <p className="text-xs text-cyan-300">
-            Jibril Raji Qasim | Full-Stack & Web3 Engineer @ Fixeroni & StormSale (abujulaybeeb08@gmail.com)
+            Jibril Raji Qasim | Senior Full-Stack & Web3 Developer (3+ Yrs Dev • 2+ Yrs Web3) | Northdemy • VeraOS • PI-DEFI • StormSale | abujulaybeeb08@gmail.com
           </p>
         );
         break;
@@ -156,7 +172,7 @@ export default function InteractiveTerminal() {
     setInputVal("");
   };
 
-  const quickPills = ["help", "bio", "skills", "projects", "chains", "contact", "clear"];
+  const quickPills = ["help", "bio", "orgs", "projects", "skills", "chains", "contact", "clear"];
 
   return (
     <section id="terminal" className="py-20 relative overflow-hidden bg-[#050608]">

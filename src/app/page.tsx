@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Organizations from "@/components/Organizations";
 import Projects from "@/components/Projects";
+import Contributions from "@/components/Contributions";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import Contact from "@/components/Contact";
@@ -21,6 +22,7 @@ export default function Home() {
         <Services />
         <Organizations />
         <Projects />
+        <Contributions />
         <InteractiveTerminal />
         <ExperienceTimeline />
         <Contact />

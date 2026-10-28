@@ -18,10 +18,9 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Teams", href: "#organizations" },
-    { label: "Works", href: "#projects" },
-    { label: "Terminal", href: "#terminal" },
+    { label: "Organizations", href: "#organizations" },
+    { label: "Projects", href: "#projects" },
+    { label: "Web3 Contributions", href: "#contributions" },
     { label: "Experience", href: "#experience" },
     { label: "Contact", href: "#contact" },
   ];

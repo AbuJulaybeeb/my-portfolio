@@ -35,7 +35,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
-              <span>Web3 & Backend Systems Architect</span>
+              <span>Senior Full-Stack & Web3 Developer (3+ Yrs Dev • 2+ Yrs Web3)</span>
             </div>
 
             {/* Main Heading */}
@@ -50,13 +50,15 @@ export default function Hero() {
 
             {/* Subtitle / Bio summary */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              Full-stack developer with a passion for clean code and user-centric design.
-              Currently engineering scalable backend architectures at{" "}
-              <a href="https://github.com/Fixeroni" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline font-semibold">Fixeroni</a>, 
-              Web3 affiliate protocols at{" "}
-              <a href="https://github.com/StormSale" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline font-semibold">StormSale</a>, 
-              and crafting smart contracts across{" "}
-              <span className="text-violet-300 font-medium">Stellar (Soroban), EVM, and BlockDAG</span>.
+              Full-stack developer with <strong className="text-white">3+ years of experience</strong> engineering scalable web architectures and <strong className="text-white">2+ years</strong> specializing in production Web3 protocols and smart contracts.
+              Currently working with{" "}
+              <a href="https://northdemy.com" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline font-semibold">Northdemy</a> (revamped platform on Hostinger),
+              collaborating on{" "}
+              <a href="https://zyradex.com" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:underline font-semibold">PI-DEFI</a>,
+              co-dev & co-owner of{" "}
+              <a href="https://vera-os-xi.vercel.app" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline font-semibold">Vera Protocol / VeraOS</a>,
+              and founder at{" "}
+              <a href="https://stormsale-one.vercel.app" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:underline font-semibold">StormSale</a>.
             </p>
 
             {/* Action Buttons */}
@@ -112,7 +114,7 @@ export default function Hero() {
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/AJDEV01"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg bg-white/5 border border-white/5 hover:border-cyan-500/40 hover:text-cyan-400 transition-all hover:scale-110"
@@ -188,12 +190,12 @@ export default function Hero() {
                       </span>
                     </div>
                     <p className="text-xs text-slate-300 font-mono">
-                      Fixeroni • StormSale • Stellar • Node.js
+                      Northdemy • VeraOS • PI-DEFI • StormSale
                     </p>
                   </div>
                 </div>
 
-                {/* Floating Micro-Badge 1: GitHub Stats */}
+                {/* Floating Micro-Badge 1: Experience */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -203,23 +205,23 @@ export default function Hero() {
                     <Layers className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-slate-400 uppercase">GitHub Activity</div>
-                    <div className="text-xs font-mono font-bold text-white">230+ Repositories</div>
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">Track Record</div>
+                    <div className="text-xs font-mono font-bold text-white">3+ Yrs Dev • 2+ Yrs Web3</div>
                   </div>
                 </motion.div>
 
-                {/* Floating Micro-Badge 2: Organizations */}
+                {/* Floating Micro-Badge 2: GitHub Repos */}
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -right-4 bottom-1/4 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#0b0f19]/90 backdrop-blur-md border border-violet-500/30 shadow-xl shadow-violet-950/40"
+                  className="absolute -right-4 bottom-1/4 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#0b0f19]/90 backdrop-blur-md border border-emerald-500/30 shadow-xl shadow-emerald-950/40"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-violet-500/20 flex items-center justify-center text-violet-400">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                     <Sparkles className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-slate-400 uppercase">Affiliations</div>
-                    <div className="text-xs font-mono font-bold text-white">7 Organizations</div>
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">GitHub Portfolio</div>
+                    <div className="text-xs font-mono font-bold text-white">230+ Repositories</div>
                   </div>
                 </motion.div>
 
