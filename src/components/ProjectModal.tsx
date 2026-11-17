@@ -30,6 +30,7 @@ export interface ProjectData {
   highlights: string[];
   tech: string[];
   organization?: string;
+  isPersonal?: boolean;
 }
 
 interface ProjectModalProps {
@@ -108,6 +109,11 @@ function ProjectModalDialog({ project, onClose }: { project: ProjectData; onClos
             {project.organization && (
               <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                 Org: {project.organization}
+              </span>
+            )}
+            {project.isPersonal && (
+              <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                Personal Project
               </span>
             )}
           </div>

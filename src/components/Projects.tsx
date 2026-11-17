@@ -14,11 +14,31 @@ import ProjectPreviewFrame from "./ProjectPreviewFrame";
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<
-    "all" | "web3" | "backend" | "fullstack"
+    "all" | "personal" | "web3" | "backend" | "fullstack"
   >("all");
   const [activeModalProject, setActiveModalProject] = useState<ProjectData | null>(null);
 
   const projects: ProjectData[] = [
+    {
+      id: "thezango",
+      title: "The Zango",
+      category: "Investigative Journalism & Media Platform",
+      type: "fullstack",
+      isPersonal: true,
+      liveUrl: "https://thezango.com",
+      githubUrl: "https://github.com/NorthDemy-Limited/The-Zango",
+      description:
+        "Independent journalism and investigative analysis publication for Northern Nigeria and the Sahel, featuring dual editorial/writer dashboards, offline draft replication, and Cloud Firestore sync.",
+      longDescription:
+        "Architected and built the official digital publication and analytical news portal for The Zango. Designed to deliver high-impact investigative reporting from Northern Nigeria and the Sahel, the platform features a public editorial hub with instant taxonomy filters, dual role-based dashboards (Chief Editor CMS with review pipelines and Writer Workspace), local storage draft replication with offline-sync resilience, read-time calculation, and high-performance server-side rendering.",
+      highlights: [
+        "Lead Full-Stack Architect & Core Developer (Personal Project)",
+        "Dual role-based dashboards: Chief Editor CMS with editorial review pipelines & Writer Workspace",
+        "Offline database replication, auto-save states, and resilient background submission queue",
+        "Live production digital publication deployed at thezango.com",
+      ],
+      tech: ["Next.js 16", "React 19", "Tailwind CSS v4", "Firebase / Firestore", "TypeScript", "Node.js"],
+    },
     {
       id: "northdemy",
       title: "Northdemy Platform",
@@ -64,6 +84,7 @@ export default function Projects() {
       title: "360RadioTV",
       category: "Broadcast & Continuous Media Streaming",
       type: "fullstack",
+      isPersonal: true,
       liveUrl: "https://360radiotv.com",
       githubUrl: "https://github.com/AbuJulaybeeb",
       description:
@@ -122,6 +143,7 @@ export default function Projects() {
       title: "Stellar-MarketPay",
       category: "Decentralized Merchant Payment Protocol",
       type: "web3",
+      isPersonal: true,
       organization: "Stellar-MarkeyPay",
       liveUrl: "https://stellar-market-pay.vercel.app",
       githubUrl: "https://github.com/AbuJulaybeeb/Stellar-MarketPay-",
@@ -162,6 +184,7 @@ export default function Projects() {
       title: "Fixeroni Marketplace & Engine",
       category: "Artisan Marketplace Platform",
       type: "backend",
+      isPersonal: true,
       organization: "Fixeroni",
       liveUrl: "https://fixeroni-page.netlify.app/",
       githubUrl: "https://github.com/Fixeroni/Fixeroni-Backend",
@@ -177,10 +200,51 @@ export default function Projects() {
       ],
       tech: ["Node.js", "Express", "PostgreSQL", "Redis", "TypeScript", "Docker"],
     },
+    {
+      id: "mediflow",
+      title: "MediFlow",
+      category: "Healthcare Coordination & Pharmacy Network",
+      type: "backend",
+      isPersonal: true,
+      liveUrl: "https://github.com/Sardaunatechworks/MediFlow",
+      githubUrl: "https://github.com/Sardaunatechworks/MediFlow",
+      description:
+        "Intelligent healthcare coordination platform connecting clinical triage, urgency-based patient queuing, and a distributed pharmacy prescription locator.",
+      longDescription:
+        "Engineered MediFlow to solve hospital emergency bottleneck delays and fragmented medicine access. The system provides real-time clinical triage urgency ranking, live hospital consultation queues, and a distributed pharmacy network enabling patients to instantly discover and reserve prescribed medicines at verified local dispensaries.",
+      highlights: [
+        "Lead Architect & Systems Engineer (Personal Project)",
+        "Clinical triage urgency classification engine & live queue state machines",
+        "Distributed verified pharmacy inventory indexing and reservation protocol",
+        "REST API with JWT role-based security, audit trails, and PostgreSQL storage",
+      ],
+      tech: ["TypeScript", "Node.js", "Express", "PostgreSQL", "React", "Docker"],
+    },
+    {
+      id: "xpend",
+      title: "Xpend",
+      category: "Conversational Fintech & Banking Engine",
+      type: "backend",
+      isPersonal: true,
+      liveUrl: "https://github.com/AbuJulaybeeb",
+      githubUrl: "https://github.com/AbuJulaybeeb",
+      description:
+        "Conversational fintech banking engine integrated with WhatsApp Cloud API for mobile-first money transfers, automated airtime top-ups, and ledger reconciliation.",
+      longDescription:
+        "Engineered conversational microservices enabling instant banking workflows on WhatsApp for mobile-first users. Features dual-entry accounting ledgers stored in PostgreSQL with strict ACID properties, Redis concurrency guards preventing double-spend, and PCI-DSS compliant payload encryption.",
+      highlights: [
+        "Personal Fintech Project / Core Engineer",
+        "WhatsApp Cloud API banking workflow engine with conversational AI states",
+        "Dual-entry ledger system in PostgreSQL guaranteeing strict financial auditability",
+        "Sub-second webhook processing with Redis concurrency guards",
+      ],
+      tech: ["Node.js", "Express", "Redis", "PostgreSQL", "WhatsApp API", "TypeScript"],
+    },
   ];
 
   const categories = [
     { id: "all", label: "All Projects" },
+    { id: "personal", label: "Personal Projects" },
     { id: "fullstack", label: "Production Platforms" },
     { id: "web3", label: "Web3 & Protocols" },
     { id: "backend", label: "Backend & Systems" },
@@ -189,6 +253,8 @@ export default function Projects() {
   const filteredProjects =
     selectedCategory === "all"
       ? projects
+      : selectedCategory === "personal"
+      ? projects.filter((p) => p.isPersonal)
       : projects.filter((p) => p.type === selectedCategory);
 
   return (
@@ -217,7 +283,7 @@ export default function Projects() {
                 key={cat.id}
                 onClick={() =>
                   setSelectedCategory(
-                    cat.id as "all" | "web3" | "backend" | "fullstack"
+                    cat.id as "all" | "personal" | "web3" | "backend" | "fullstack"
                   )
                 }
                 className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
@@ -260,11 +326,18 @@ export default function Projects() {
                         <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-medium">
                           {project.category}
                         </span>
-                        {project.organization && (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
-                            {project.organization}
-                          </span>
-                        )}
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {project.isPersonal && (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                              Personal
+                            </span>
+                          )}
+                          {project.organization && (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                              {project.organization}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">

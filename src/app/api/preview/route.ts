@@ -16,6 +16,8 @@ export async function GET(request: NextRequest) {
       hostname.endsWith(".netlify.app") ||
       hostname === "northdemy.com" ||
       hostname.endsWith(".northdemy.com") ||
+      hostname === "thezango.com" ||
+      hostname.endsWith(".thezango.com") ||
       hostname === "360radiotv.com" ||
       hostname.endsWith(".360radiotv.com") ||
       hostname === "sicolines.com" ||
